@@ -65,7 +65,293 @@
       
     * '-a' -> dizin kopyalarken kullanılabilir.
     * '-R' -> Tüm alt dizinler ile birlikte kopyalama yapılır.
+    * cp dosya Desktop/ -> şeklinde kullanarak farklı bir yola dosya kopyalanır.
     
+*Dosya Taşıma;
+    #mv dosya Desktop/  -> şeklinde kullanarak dosya taşınabilir.
+        -f -> işlem force edilir.
+        -i -> kullanıcıdan onay ister
+        -u -> taşıma işlemi sadece kaynak dosya daha güncelse yada hedef dosya yerinde yoksa gerçekleştirilir.
+        
+*Dosya/Dizin Silme;
+    #rm dosya_adi -> ile dosya silinir.
+    #rm -r dizin1/dizin2 -> dizin tüm alt dosya/dizinleriyle birlikte silinir.
+    
+    
+*Girdi/Çıktı Mantığı ve Yönlendirme;
+
+    #echo "Kaan" > kayit.txt  ->işlemi ile dosyanın içine belirtilen metin yazılabilir.
+    
+        **Kullanılabilecek Operatörler:
+             1) '>'     -> çıktıyı yazmak için bir dosya oluşturulur , var ise üzerine yazılır.
+             2) '>>'    -> append(ekleme) işlemi yapar.yeni dosya oluşturmaz.
+             3) '2>'    -> Standart error çıktısı için dosya olusturur, varsa üzerine yazar.
+             4) '2>>'   -> Standart error çıktısını append eder.
+             5) '&>'    -> hem standart cıkıs hemde standart error çıktısı için dosya olusturur.varsa üzerine yazar.
+             6) '<'     -> belirtilen dosyanın içeriğini stdin olarak kullanmasını sağlar.
+             7) '<<'    -> belirtilen dosyanın tüm satırlarını stdin olarak kullanmasını sağlar.
+             
+             
+     # ping google.com &> ping.txt -> Bu işlemle ping.txt dosyasını google'a attığımız ping'in 
+                                      stdout ve stderror verilerini yazmış olduk. 
+     
+     
+*Bir Komutun Çıktısının Diğer Bir Komuta Verilmesi;
+    
+     #komut1 | komut2 -> Söz dizimi ile gerçekleştirilir.
+     # cat deneme.txt | more 
+     
+ 
+*Temel Ağ Komutları ;
+
+    #netstat nlp -> dinleme modundaki socket ve uygulamalar ile ilgili bilgi verir.
+        1)'-n' -> port bilgilerini numeric olarak verir.
+        2)'-p' -> program bilgilerini verir.
+        3)'-l' -> listenin socketleri gösterir.
+        
+ 
+    #whois 192.159.12.32/www.google.com -> Bir ip adresi ya da domain hakkında ayrıntılı bilgi almak için kullanılır.
+    
+    #nslookup -q=mx google.com -> Bu komut bir alan adı ya da ip adresine ait dns kayıtlarını sorgulamak için kullanılır.
+       
+    #dig 'type' alan_adi -> Bu şekilde kullanılır,nslookup ile aynı mantıkta çalışır.
+    
+    #traceroute -n 8.8.8.8 -> belirtilen makineye gidilene kadar geçilen cihazları belirtir.
+    
+    #arp -> arp tablosunu ekrana bastırır.
+    
+    
+*Arşivleme Komutları;
+
+    #tar cvfz dizin.tgz dizin -> dizin'i dizin.tgz adıyla sıkıştırır.
+    #tar xvfz dizin.tgz       -> sıkıştırılmış olan dosyayı extract eder.
+    
+ 
+ 
+ *Not: 
+    1) Dosya ismi '.' ile başlıyorsa o dosya gizlidir.
+    2) Linux sistemlerde en üst katmanda '\' kök dizini bulunur.
+    3) Dosya dizin isimlendirmesinde '?' ve '*' hariç tüm simgeler kullanılabilir.
+    4) Bir dosyayı executable hale getirmek için;
+        #chmod +x dosya_adi -> komutu kullanılır.
+   
+   
+
+DİZİNLERİN GÖREVLERİ KONTROL EDİLECEK.!!!
+
+
+*Dosya İzinleri;
+    
+    *Her dosyanın bir sahibi bir grubu ,erişim izni(sahibi,grubu,diğerleri) bulunur.
+    
+    *Linux 3 çeit dosya izin kavramına sahiptir.
+        -Read
+        -Write
+        -Execute
+        
+    * owner     group       others
+      - - -     - - -       - -  -              --> 2'lik sistem 1-0 verilerek izinler belirlenir. 
+      r w x     r w x       r w  x
+
+
+
+    * #ls-l komutu ile izinler detaylı olarak görüntülenebilir.
+    
+    *Dosya izin değiştirme örneği;
+        #chmod u+x,g+w,o-r deneme.txt
+        
+                u=users
+                g=groups
+                o=others
+                +=push
+                -=pop
+        
+        
+        
+        
+        
+     *Linux Sistemlerde 3 adet Özel İzin Bulunmaktadır;
+    
+        *SUID -> Çalıştıran kim olursa olsun,dosya sahibinin yetkileri ile çalışma izni verilir.
+            #chmod u+s deneme.txt
+            
+        *SGID -> Dosyanın kimin tarafından çalıştırıldığına bakılmaksızın grup yetkileri ile çalıştırılmasına izin verir.
+            #chmod g+s deneme.txt
+            
+        *Sticky Bit -> Dosyayı sahibinden başkası silemez hale getirir.
+            #chmod +t deneme.txt
+            
+            
+ *Dosya/Dizin sahip ve gruplarını değiştirmek için;
+     
+    #chown -R misafir:misafir dizin1 -> dizin1 'in sahibini ve kullanıcısını 'misafir' olarak değiştirir.
+        
+ 
+ *Dosya/Dizin işlemlerinde Arama;
+ 
+    1)Find;
+        #find / -name "*.conf" -> kök dizininde .conf ile biten dosyaları bulur.
+        #find / -size +10M     -> Kök dizininde 10 MB 'dan büyük dosyaları bulur.
+        #find /root -perm 777 -a -type f -> root dizininde herkes için rwx hakkı olan dosyaları bulur.
+        #find /root  -mtime +30 -> root dizininde 30 günden eski dosyaları bulur.
+    
+    2)Locate;
+        Sistemdeki dosyaların yazılı olduğu 'updatedb' isimli bir dosya içinden isimleri arar.
+        #updatedb komutu ile bu liste güncellenebilir.
+        
+        #locate gzip
+     
+    3)Which-Whereis;
+        #whereis ls
+      
+      
+  *Dosyalarda içerik arama;
+  
+    1)Grep;
+        #grep -ir Merhaba /root/* ->root dizininde içinde Merhaba geçen dosyaları arar.
+            
+                * '-i' -> aramanın büyük küçük harf duyarlı olmamasını sağlar.
+                * 'r'  -> aramanın alt dizinler içinde geçerli olduğunu anlatır.
+                
+                
+                örnek:  cat /etc/passwd | grep misafir
+                
+     2)Egrep; Daha gelişmiş aramalar yapılabilir.
+     
+        #egrep -ir "LinuxAkademi|DD" * ->root dizini içerisinde LinuxAkademi ya da DD geçen dosyaları bulur.
+        
+        
+        
+ *Hesap Yönetimi;
+ 
+   *Linux sistemlerde kullanıcı bilgileri '/etc/passwd' üzerinde tutulur.  -> Tüm Kullanıcılar Görüntüleyebilir.
+   *Gruplar ile ilgili bilgiler '/etc/groups' üzerinde tutulur.
+   *Kullanıcılara ait şifrelerin hash değerleri '/etc/shadows' dosyasında tutulur. -> Sadece Root görüntüleyebilir.
+   
+   
+   
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
+     
+     
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
   
   
