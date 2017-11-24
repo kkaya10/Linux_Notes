@@ -1,0 +1,100 @@
+* Kalıcı hostname değişikliği için;
+    #echo "rootK" > /etc/hostname
+
+* Kullanıcı şifresi değiştirmek için ;
+    #passwd
+    
+* Mevcut Ethernet ve wireless kart bilgilerini görüntülemek için;
+    #ifconfig
+
+*Manuel IP ataması yapmak için;
+    #ifonfig eth0 10.10.10.10 netmask 255.255.255.0
+ 
+*Gateway Tanımlamak için ;
+    #route add defalult gateway 10.10.10.1
+ 
+*Routin tablosunu görüntülemek için;
+    #netstat -rn
+  
+*Dns tanımlaması yapmak için;
+    # nameserver 8.8.8.8" > /etc/resolv.conf
+    # "ameserver 8.8.4.4 >> /etc/resolv.conf
+  
+*Kablosuz ağ birimleri ile ilgili bilgiler için;
+    #iwconfig
+    
+*Yardım alma amaçlı kullanılabilecek komutlar;
+  #man komut_ismi
+  #komut_ismi -h
+  #komut_ismi --help
+  
+*Bulunduğumuz dizin bilgisi;
+  #pwd
+  
+*Dizin değiştirmek için;
+  #cd Dizin_Yolu   -> Belirtilen Adrese Yönlendirilir
+  #cd ..           -> Bir önceki parent dizine geçer
+  #cd -            -> Bir önce bulunulan dizine geçer
+  #cd ../../       -> İki dizin geriye gider
+  
+*Listeleme yapmak için;
+  #ls
+  #ls -all
+  
+*Sistemdeki Diskler ve disk bilgileri için;
+  #df
+  #df -h ->Human readeble format(GB,MB)
+  
+*Ekrana metin basmak için ;
+  
+  #cat dosya_adi
+  #more dosya_adi -> içeriği uzun dosyalar için kullanılır , sığmayan bölüm space aracılığıyla görüntülenir.
+  #less dosya_adi -> more benzeridir,daha gelişmiştir. :24 yaparak belirtilen satıra gidilebilir.
+  #head -4 dosya_adi -> ilk 4 satırı ekrana basar.
+  #tail -4 dosya_adi -> son 4 satırı ekrana basar.
+  
+ 
+* Dosya Dizin Oluşturma ;
+    #mkdir dosya_adi ->klasör oluşturulur.
+    #mkdir -p Dizin1/Dizin2/Dizin3 -> şeklinde kullanılırsa alt dizinleride oluşturur.
+    #touch dosya_adi -> sıradan içi boş dosya oluşturur.
+  
+*Dosya/Dizin Kopyalama;
+    #cp dosya dosya-yedek  -> dosya isimli belgeyi kopyalar ismini dosya-yedek yapıp bulunulan dizinde oluşturur.
+    #cp -pr dizin dizin-yedek -> -p kullanıldığında kopyalanan dizin yetkileri ve izinleri ile kopyalanır.
+      
+    * '-a' -> dizin kopyalarken kullanılabilir.
+    * '-R' -> Tüm alt dizinler ile birlikte kopyalama yapılır.
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
