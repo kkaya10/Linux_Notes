@@ -1,0 +1,48 @@
+Linux       Dağıtımı
+Çekirdek    çekirdek üzerine kurgulanmış uygulamalar
+
+
+
+Temel Linux       +  Xwindow(Kullanıcı Arayüzü)          + Paket Yönetim Sistemi
+(temel linux         pencere - tema - uygulamalar          Uygulama Kurma-update-kaldırma
+komuları burada
+bulunur)
+
+*Redhat ile pardus arasındaki fark "paket yönetim sistemidir"
+*Bir linux firewall olarak kullanılabilir.
+*systemd'nin init.d'ye göre hızlı olmasının sebebi sıra beklememesi
+
+*Bazı Kavramlar;
+-suspend: PC açık , programlar pasif,az güç tüketimi(leptop ekranının indirilmesi gbi düşün)
+-hibernate : PC kapanır ancak önce ram'e dump edilir.açılınca kaldığı yerden devam eder.
+
+*Bir dosyayı sildiğimizde aslında onun index numarasını değiştirmiş oluyoruz.
+*Defrag : farklı indeksler üzerinde ayrık olan dosya kümelerinin bir araya getirilmesidir.
+*OSX-LNUX-WİNDOWS için ortak dosya sistemi exFAT'dır.
+
+*HDD'ler en fazla 4 bölümden oluşurlar; sda0,1,2,3
+
+*Linuxta bir dosyaya isim verirken "-" ile başlamak sakıncalıdır.
+
+* -POP3 = mailler cihaza taşınır yani sunucuda tutulmaz
+  -IMAP = mailler sunucuda tutulur.cihazlarımıza kopyalanır.
+  
+*SSH'ın güvenlik önlemi "fingerprint".
+
+*incremental backup :  sadece değişmiş dosyaların backup edilmesidir.
+
+*howtoforge -> linux ile ilgili tüm problemler.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
