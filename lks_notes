@@ -1,0 +1,500 @@
+Kernel(Çekirdek) Nedir ?
+
+Kullanıcının isteklerini(yazılımlar aracılığıyla) alıp donanımlara ileterek bu isteklerin gerçekleşmesi için çalışan uygulama denebilir.Donanım ile yazılım arasındaki haberleşmeden sorumludur.
+
+Shell(Kabuk) Nedir ?
+Kullanıcı ile Kernel arasında bulunur ve kullanıcıdan aldığı komutları yorumlayarak Çekirdek tarafına iletir.
+
+echo $SHELL  = komutu ile kullanılan kabuğun ne olduğuna bakılabilir.
+
+echo $PATH = ortam değişkenleri : anlamı sen bir komut verdiğin zaman ben aşağıda bulunan adreslere bakarım bu adresler Eğer orada çalıştırılabilir bir dosya bulursam bunu kullanırım.
+adresler ":" ile ayrılır.
+
+lsb_release -a = Distro yani dağıtımın ne olduğuna bakılabilir.
+uname -a        = Çekirdek versiyonunu öğrenmek için kullanılır.
+dmidecode     = sistem ile alakalı bilgi almak için kullanılır.Farklı parametreler kullanılır.
+         (dmidecode --type bios / --type memory,cache,basebord vb. şeklinde)
+ 
+lshw         = Donanım ile alakalı ayrıtılı bilgi almak için kullanılır ls hardware komutu.
+
+fdisk -l             = Disk bölümlerini görmek için kullanılır.
+uptime  = Sistemin ne zamandır açık olduğunu gösterir.
+free -m  = Sistemde kullanılan bellek miktarını gösterir.
+cal           = Takvim bilgisi
+
+*Gizli dosyaları görüntülemek için -la kullanılabilir.Bir dosyayı gizli hale getirmek için dosyanın
+isminin başına "." koymak yeterli.
+
+less - more komutları : uzun dosyalarda daha düzgün bir çıktı alabilmek için kullanılır.
+
+cd - = komutu ile üzerinde çalışılan son iki dizin arasında rahatlıkla geçiş yapılabilir.
+
+ls -l = Daha düzgün bir çıktı alınır.
+ls -a = Gizli dosyalarda çıktıya dahil edilir.
+
+Bazı Kısaltmalar ;
+ctrl + L ile komut satırı temizlenebilir.
+ctrl + U ile satır başına temizlenerek dönülebilir.
+ctrl + D ile terminal ekranından çıkılabilir.
+
+*Konsolda kullandığımız komutlar ".bash_history" adında bir dosya içerisine kaydedilir.
+ve history komutu ile ekrana basılabilir. Ekrana basılan listeden istedğimiz bir komutu tekrar kullanmak ister isek !komut_no  syntaxı ile bu işlemi gerçekleştirebiliriz.
+history 10 komutunu kullanırsak son 10 komut önümüzde listelenir.
+daha önce yazdığımız -se ile başlayan bir komut kullanmak istersek !se şeklinde bir komut
+kullanabiliriz.
+echo $HISTSIZE komutu ile history'nin büyüklüğü kontrol edilebilir.
+.bashrc dosyasının içerisinde yer alan HISTSIZE değeri değiştirilebilir.
+history -c komutu ile bu dosyayı temizleyebiliriz.
+
+*İki farklı komutu kullanmak için ";" kullanılabilir.Bu işlem için && operatörüde kullanılabilir.
+
+* || operatörünün anlamı ise ilk komut başarısız olursa ikincisini çalıştır demektir.
+
+
+*Linux sistemlerde 7 farklı çalışma seviyesi vardır:
+0:Hiç bir servisin çalışmadığı ve kapatma işlemlerinin
+başladığı seviye (halt)
+1:Tek kullanıcılı (single user) kullanıcı seviyesi. Ağ
+servisleri çalışmaz. Sistem bakımı için kullanılabilir.
+2:Ağ desteği olmadan çok kullanıcılı çalışma seviyesi.
+3:Ağ destekli çok amaçlı çalışma seviyesi.
+4:Kullanılmaz. Fakat kullanıcı tarafından özel olarak
+tanımlanabilir.
+5:Grafiksel kullanıcı ara yüzünün çalıştığı seviye.
+Günümüzün kişisel kullanım için olan Linux dağıtımlarının hemen
+hepsi varsayılan olarak bu çalışma seviyesinde başlatılır.
+6:Sistemi yeniden başlatma (reboot) seviyesi.
+
+
+Hangi çalışma seviyesinde hangi servislerin vb çalışacağına bakmak için ;
+/etc/rcx.d dosyasının içerisinden ulaşılabilir.
+
+
+* "shutdown -h now" komutu ile sistemimizi kapatabiliriz.
+  "shutdown -h now+10" komutu ile 10 dakika sonra sistemimizin kapanmasını sağlayabiliriz.
+  "halt" komutu verildiği anda sistem kapanır.
+  "reboot" ile yeniden başlatılır.
+
+
+
+Linux Sistemlerde Sanal Konsollar ; 
+
+ctrl+alt+f1 - ctrl+alt+f6 tuşları kullanılarak 6 adet sanal konsol açılabilir.Bunun amacı
+grafik arayüzdeyken istediğimiz kadar konsol açabiliriz ancak sadece komut ekranında isek
+bu işlem biraz zorlaşır.Onun için bu tuşlar kullanılabilir.ctrl+alt+f7 ile tekrar grafik
+ekrana dönüş yapılabilir.
+
+
+Linux Sistemlerde Servis İşlemleri ;
+
+Sistemimizdeki servislerle ilgili betikler /etc/init.d altında bulunur.
+#service samba status
+#service httpd stop/status/start
+şeklinde kullanılabilir.
+
+
+
+Linux Sistemlerde Süreçler ; 
+
+ps komutu süreç görüntülemek için kullanılabilir.
+ps -aux
+ps -alx
+
+*top komutu ile süreçleri canlı olarak takip edebiliriz.q ile çıkış sağlanır.
+*pstree komutu ile süreçler grafiksel olarak gösterilir.
+*Çalışan bir süreci sonlandırmak için yapılabilecekler ;
+
+ kill <pid>
+ kill -9 <pid>
+ killall <sürecismi>
+ killall -9 <sürecismi>
+
+
+*pgrep komutu:
+ "pgrep -lu root" komutu ile root kullanıcısına ait süreçler belirtilir.
+  "pgrep apache2" komutu ile apache servisinin süreç numarası yada numaralarını
+ görüntüleyebiliriz.
+
+
+
+Linux Sistemlerde Kullanıcı İşlemleri 
+
+etc/passwd  -> Dosyasında kullanıcı bilgileri
+etc/shadow  -> Dosyasında ise parola özetleri tutulur.
+
+etc/issue   -> Dosyasında ise ; bir kullanıcı sisteme giriş yapmak istediğinde bu
+              dosyada bulunan mesaj ekrana yansıtılır ve bir kullanıcı adı girmesi
+               beklenir.
+
+etc/motd    -> Sisteme her başarılı girişten sonra gösterilen mesaj burada tutulur.
+
+*Sisteme giriş yapmış olan ve halen sistemde olan herkes /var/run/utmp içinde
+listelenir.
+
+
+*file dosya -> komutu ile belirttiğimiz dosya hakkında bilgi alabiliriz.
+
+*ikilik dosyayı okumak için string komutu kullanılabilir.
+
+* /var/log/wtmp dosyasına bakalım. Sisteme yapılan bütün başarılı
+bağlantılar /var/log/wtmp dosyası içindedir.
+
+
+Sisteme Kullanıcı Ekleme :
+
+"adduser kullanıcı"  komutu kullanılarak bu işlem yapılabilir.
+
+
+PASSWD DOSYASI :
+
+zurna:x:1000:1000:,,,:/home/zurna:/bin/bash
+
+Yukarda gördüğünüz satır birbirinden : işaretiyle ayrılmış bir
+kaç bölümden oluşmuş. İlk bölüm kullanıcı ismi. x ile gösterilen
+bölüm eskiden parolaların şifrelenmiş halde bulunduğu yerdi.
+Şimdiyse parolalar şifrelenmiş olarak shadow dosyasında yer
+almaktadır. Üçüncü bölümdeki 1000, kullanıcının numarasını,
+dördüncü bölümdeki 1000 ifadesi de kullanıcının bağlı olduğu
+grubu belirtir.
+
+
+SHADOW DOSYASI :
+
+zurna:$6$ttZw7OIi$LjmBdapfyNA6kKrXnAcF1xkgikQCGcLN3hs
+NrwZmEZkVNLPmoRqD9KYF5TngV60FAlecJine.Qv5v28uO2p8z.:15944:0:99999
+:7:::
+
+Bu kayıt parola ile ilgilidir. En baştaki bölüm parolanın hangi
+kullanıcıya ait olduğunu gösterir
+
+Linux sistemlerde parola hash+salt şeklinde saklanır. Hash,
+kriptografik özet demektir. Yani bir ifadenin (örneğin parolanın)
+çeşitli algoritmalara göre kriptolanmasıyla oluşturulan yeni
+ifadeye hash denir. Salt ise tuzlama denektir. Yani siz bir
+sisteme kullanıcı adı ve şifreyle kayıt olurken sizin
+belirlediğiniz parola şifrelenerek veri tabanında saklanır fakat
+güvenliği artırmak için sizin belirlediğiniz parolaya
+şifrelenmeden önce rastgele değerler eklenir ve bu şekilde
+şifrelenir. İşte rastgele eklenen bu değerlere salt denir.
+
+salting1 = hash(parolanız + salt değeri1)
+salting2 = hash(parolanıx + salt değeri2)
+
+Salt değerleri farklı olacağından iki farklı kullanıcı aynı parolaları kullansa bile farklı değerler
+üretilmiş olacaktır.
+
+Birde pepper değerinden bahsedilebilir Pepper değeri salt'dan farklı olarak sabit bir değerdir ve gizli olarak saklanır.
+
+Kullanıcılar bir websitesine üye oldukları zaman eğer o sistemde hashing kullanılıyorsa karşı server tarafında yani parolaların store edildikleri yerde parolaları cleartext olarak görünmez.
+
+
+İlk $ işareti ve ikinci $ işareti arasındaki sayı hangi
+şifreleme/hash algoritmasının kullanıldığını gösterir.
+Bu değer;
+1 ise MD5
+2 ise Blowfish
+5 ise SHA256
+6 ise SHA512 algoritması ile şifrelendiğini gösterir.
+
+İkinci $ ile üçüncü $ işareti arasındaki ifade salt değeridir.
+(tabi o da hash değeridir). Sonraki ifade ise parolanın
+şifrelenmiş halidir.
+
+
+*Bir kullanıcının hangi farklı gruplara üye olduğunu görmek için
+groups <k_adi> komutu kullanılır.
+
+
+*Kullanıcı hesabını kilitlemek için ;
+ usermod -L <k_Adi>
+*Tekrar aktif hale getirmek için;
+ usermod -U <k_Adi>
+
+
+*who = komutu ile sisteme bağlı kullanıcılar görüntülenir.
+*whoami = ile ise sisteme giriş ismi görüntülenir.
+
+*chage = komutu ile kullanıcıya ait parola parametreleri görüntülenebilir.
+        #chage -l root
+
+ örneğin zurna kullanıcısının parola süresinin expired olacağı tarih
+ belirtmek için #chage -E 2015/08/27 zurna komutu kullanılır.
+
+
+Sistemden Kullanıcı Silmek İçin ;
+
+userdel <k_adi> komutu ile passwd ve shadow dosyasındaki kayıtlar silinir.
+userdel -r <k_adi> komutu ile kullanırsak ev dizinindeki dosyalarınıda siler.
+
+
+Dosya ve dizinlerle ilgili erişim yetkilerini istediğimiz
+gibi değiştirebiliriz. Tabi root kullanıcı olarak. Bunun için
+chmod komutundan faydalanabiliriz. Komutun en kolay kullanım
+şekli
+
+chmod <ugoa> <+=-><rwxst><dosya/dizin>
+
+ kullanımıdır.
+
+u : dosya ya da dizinin sahibi
+g : dosya ya da dizin sahibiyle aynı gruptaki kullanıcılar
+o : diğer kullanıcılar
+a : herkes
++ : yetki ekleme
+– : yetki çıkarma
+= : yetki eşitleme
+r : okuma yetkisi
+w : yazma yetkisi
+x : çalıştırma yetkisi
+s : suid biti
+t : sticky bit
+
+*Eğer bir dizinin erişim yetkilerini alt dizin ve onların da
+altındaki dosyalarla birlikte değiştirmek isterseniz chmod -R
+<755> <dizin> gibi bir komut kullanmanız gerekir.
+
+**Ev dizinimizde belge1 adında bir dosya olsun.
+Bu dosyayı değiştirilemez yapmak için chattr +i belge1 komutunu
+kullanabiliriz. Sistemde bu şekilde dosya olup olmadığını da
+lsattr komutuyla görebiliriz. Eğer bir dizinin altındaki tüm
+dosyaları kontrol etmek isterseniz komutu lsattr -R <dizin>
+şeklinde kullanabilirsiniz.
+Dosyayı geri eski haline getirmek
+için de chattr -i belge1 komutunu kullanıyoruz.
+
+
+Program Kaldırma-Sistem Güncelleme-Kurma
+
+Dağıtımların büyük çoğunluğu iki tip paket türü kullanmaktadır.
+
+Redhat/CentOS/Fedora -> rpm paketi kullanır.  *RPM
+Debian/Ubuntu       -> deb paketi kullanır.   *DPKG
+
+Bu paketlerin yüklenebilmesi içinde farklı paket yöneticileri kullanılmaktadır.
+
+Yukarıda belirtilen paket yöneticileri manuel paket yönetim sistemleridir.Birde program repolarından
+otomatik olarak paketlerin indirilip kurulmasını sağlayan yöneticiler vardır.
+
+YUM(rpm) ve APT(deb)
+
+dpkg -i <paket.deb> komutu ile .deb paketi kurulabilir.
+dpkg -i *.deb komutu ile bir dizin içerisindeki tüm deb paketlerinin kurulumu gerçekleştirilir.
+
+
+Program kaldırmak için ise ;
+
+dpkg --purge remove <program_adı> komutu kullanılmalıdır.
+
+Hangi depolardan paketlerin indirileceği Debian sistemlerde etc/apt/sourcest.list altında bulunur.
+
+Kurmak istediğimiz program ve depolarda olup olmadığıyla ilgili bilgi almak için de
+apt-cache search <program_adı>
+
+Sisteme kurulan bir programı kaldırmak için de apt-get remove komutu kullanılır.
+Komutu apt-get --purge remove <program_adı> şeklinde kullanırsanız programı konfigürasyon dosyalarıyla birlikte kaldırırsınız.
+
+Dağıtımınızı yani versiyonunu yükseltmek istiyorsanız bu sefer apt-get dist-upgrade komutundan faydalanabilirsiniz.
+
+Sistemde daha önceki programlardan kalan eski ve gereksiz artıkları temizlemek için kullanabileceğimiz iki komut vardır.
+Bunlar apt-get autoremove ve apt-get autoclean komutlarıdır. Böylece çöplerden kurtulmuş olursunuz.
+
+Dizin oluştururken altdizinleri ile birlikte olsun istiyorsak -p parametresi kullanılmalıdır.
+
+
+***Yeni bir text dosyası oluşturmak için de cat komutunu kullanabiliriz. Örneğin cat > hacker komutuyla hacker adında bir
+dosya oluşturalım. Aynı zamanda bu dosyanın içine istediğimiz ifadeyi de yazalım. Yazacağımız şeyler bittikten sonra imleç satır başındayken
+ctrl+D tuşlarına basarak yazma işini tamamlayabiliriz ve komut satırı eski haline döner. Dosyamız istediğimiz gibi oluştu.
+
+
+Bir başka komutumuz da sort komutu.
+Bu komut belge çıktısını alfabetik tarzda konsolda gösterir. Eğer sort -r <dosya> şeklinde
+kullanırsak ters alfabetik olarak yansıtır.
+
+
+*Bir dosya içindeki satır, karakter ya da kelime sayılarını merak ediyorsanız merakınızı gidermek için wc (wordcount) komutunu kullanabilirsiniz. -l ile satır, -c ile karakter ve -w parametresi ile de kelime sayısı öğrenilebilir. Eğer sadece wc şeklinde parametresiz kullanırsanız hepsini gösterir.
+
+*nl komutu her satırın başına artırarak sayı ekler.
+
+*Bir başka komutumuz olan paste komutunu incelemeye geldi sıra. Bu komut iki ya da daha fazla dosyayı alarak, satırları ardışık olarak birbirine ekler ve buna göre olan çıktıyı gösterir
+
+*Şimdi de tr komutuna bakalım. Bu komut dosyalar içindeki karakterleri istediğimiz gibi değiştirmemizi sağlar. En temel kullanımı aşağıda görüldüğü gibidir.
+
+*Diğer komutumuz find ile de istediğimiz kriterlerde arama yapabiliriz. Komutu find <dizin> <parametre> <aranılan dosya/ifade> şeklinde kullanıyoruz.
+
+
+
+"""DÜZGÜN İFADELER"""
+
+
+
+xargs komutu ;
+
+kendisine girdi olarak verilen verileri kendisinden sonraki programa argüman
+olarak verir.
+deneme isimli bir dosya ve bunun içinde "/etc" ifadesi yer aldığını düşünelim.
+cat deneme | xargs ls
+komutu verilirse /etc dizininin içini listeleyecektir.
+
+örnek2:
+
+belirli bir dizinde bulunan txt uzantılı dosyaları silmek istiyorum ;
+ls *.txt | xargs rm
+komutu ile bu işlemi gerçekleştirebilirim.
+
+
+örnek3:
+
+find / -name *.jpg -type f -print | xargs tar -cvzf fotolar.tar.gz
+
+kök dizin altında bulunan jpeg dosyalarını bul görüntüle ve bunları sıkıştırarak
+fotolar isimli arşiv dosyasına at.
+
+
+
+DOSYA SIKIŞTIRMA-ARŞİVLEME İŞLEMLERİ
+
+*tar komutu;
+
+örneğin: Ev dizini altındaki merhaba.py ve deneme dosylarını tar ile arşivlemek
+için;
+
+tar -cf arşiv.tar merhaba.py deneme
+(-c = create / -f = isim belirleme)
+
+*Eğer bu arşiv dosyasını açmak istersek;
+tar -xvf <dosya.tar>
+(-x = extract / -v = verbose)
+
+
+
+*Arşivleme işlemini sıkıştırarakta yapabiliriz.(***)
+Bunun için iki farklı sıkıştırma aracı kullanabiliriz.
+
+*gzip(tgz - tar.gz) ve bzip2(tar.bz2)
+
+tar -czvf arşiv2.tgz merhaba.py deneme
+
+komutu ile arşiv2.tgz ismi ile merhaba ve deneme dosyalarını gzip kullarak
+sıkıştırmak istediğimiz anlaşılıyor.
+
+tar -cjvf arşiv2.tar.bz2 merhaba.py deneme
+
+
+
+
+*arşiv dosyası oluşturmadan dosyalarımızı sadece sıkıştırmak istersek bunun için
+gzip - gunzip
+bzip2 - bunzip2
+araçlarından faydalanılabilir.
+
+
+gzip test = komutu ile sıkıştırılır
+gunzip test.gz = komutu ile açılır.
+
+bzip2 test = komutu ile sıkıştırılır.
+bunzip2 test.bz2 = komutu ile açılır.
+
+
+*Linux sistemlerde RAR ve ZİP uzantılı sıkıştırılmış dosyalarıda açabiliriz.
+bunu için unrar ve unzip araçları kullanılır.
+
+unrar e deneme.rar = komutu ile açılır.
+
+
+Link "KISAYOL" Kavramı : symlink
+
+
+
+NANO ve VİM
+
+vim editörü ile ilgili bazı komutlar;
+
+:q -cıkıs
+:w -kayıt
+:wq - kaydet ve cık
+:q! - kaydetmeden çık
+:x - vimden çık dosya değişmiş ise kaydet
+:r dosya - komutu ile peynir dosyasının içine zeytin dosyasını ekleyebiliyoruz.
+
+:!ls - yazarsak listeler
+
+:r !ls - komutu kullanılırsa ls komutunun çıktısını imlecin bulunduğu noktaya ekler
+
+
+vi dosya1 dosya2 - komutu ile iki dosya ile birlikte çalışabilirsiniz.
+:n komutu ile aralarda geçiş yapılabilir.
+
+:s/Zeyno/Zeytin/g - bu komut ile içerisinde bulunduğumuz dosyada Zeynep isimleri
+Zeyno ile değiştirilecektir.
+
+
+Zamanlanmış Görevler
+
+Cron servisi:
+
+crontab komutu kullanılır
+/etc/crontab dosyasında tutulur.
+
+crontab -e komutu ile o kullanıcıya ait görev dosyası açılır ve değişiklikler
+yapılmaya başlanır.
+
+
+crontab -l ile bu görevleri görüntülersiniz.
+crontab -r ile görev silme
+
+
+1.bölüm : İşin seçilen saat başından kaç dakika sonra
+başlatılacağını belirler. (0-59)(örneğin 30 demek, saat başını 30
+dk. Geçe demektir.
+
+2.bölüm : İşin hangi saatte başlatılacağını belirler. (0-23)
+(sayı yerine * girilirse her saat anlamına gelir)
+
+3.bölüm : İşin hangi günler başlatılacağını belirler. (1-31)
+(sayı yerine * girilirse her gün anşamına gelir. 7,14 ifadesi de
+her ayın 7 si ve 14 ü anlamına gelir)
+
+4.bölüm : İşin hangi aylarda yapılacağını belirler. (1-12)
+(sayı yerine * girilirse her ay anlamına gelir. 1,6 ifadesi Ocak
+ve Haziran demektir. 1-3 ifadesi de Ocak-Şubat-Mart demektir)
+
+5.bölüm : İşin haftanın hangi günlerinde yapılacağını
+belirler. (0-7)(sayı yerine * girilirse her gün demektir. 0. ve
+7. günler Pazar kabul edilir. 1,2 ifadesi P.tesi ve Salı
+anlamına, 1-3 ise P.tesi-Salı-Çarşamba anlamına gelir)
+
+
+
+
+
+LOG DOSYALARI :
+
+/var/log dosyası altında tutulurlar.
+
+
+auth.log dosyasında kullanıcılar ile alakalı loglar tutulur.
+userlog dosyasında kullanıcı süreçleri ile alakalı kayıtlar tutulur.
+
+Mesela sistemle ilgili bir çok olayın kaydının tutulduğu
+dosya messages dosyasıdır. Bu dosyaya yapılan kayıtları konsoldan
+canlı olarak izlemek isterseniz tail -f /var/log/messages
+komutunu kullanmalısınız
+
+Bir başka log dosyası olan dmesg de ise sistem açılırken
+gerçekleşen olayların kaydı tutulur. Dmesg kayıtlarını görmek
+için konsoldan dmesg | more komutunu da kullanabilirsiniz.
+
+Sistemde en son oturum açan kişileri listelemek için last
+komutunu kullanabiliriz. Örneğin son 15 kullanıcı için last -15
+diyebiliriz.
+
+
+Apache ile ilgili log dosyaları
+/var/log/apache2/ altında bulunur. Bu dosyalardan access.log
+dosaysını inceleyerek kimler sunucumuza bağlantı yapmış
+görelim :)
+
+
+Sistemle ilgili kayıtların tutulduğu bir başka dosya da
+syslog dosyasıdır.
+
