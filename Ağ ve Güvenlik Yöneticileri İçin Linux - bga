@@ -9,6 +9,9 @@
 
 *Manuel IP ataması yapmak için;
     #ifonfig eth0 10.10.10.10 netmask 255.255.255.0
+    
+*Gateway Bilgisini Görmek için ; 
+    #ip route | grep default
  
 *Gateway Tanımlamak için ;
     #route add defalult gateway 10.10.10.1
